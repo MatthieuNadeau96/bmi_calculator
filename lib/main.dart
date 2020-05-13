@@ -50,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
       } else {
         remainderInches = inches - totalInches;
       }
-      print('$feet\'$remainderInches\"');
     });
   }
 
@@ -60,13 +59,17 @@ class _MyHomePageState extends State<MyHomePage> {
     var deviceSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 60,
-          horizontal: 15,
+        padding: EdgeInsets.only(
+          left: 15,
+          right: 15,
+          bottom: 30,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 60,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -196,6 +199,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 20),
                 )
               ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              child: Container(
+                height: 60,
+                width: deviceSize.width,
+                decoration: BoxDecoration(
+                  color: Colors.green[300],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    'Calculate',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
