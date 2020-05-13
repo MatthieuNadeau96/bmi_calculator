@@ -26,6 +26,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool male = false;
+  bool female = false;
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -46,14 +49,26 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 GenderButton(
                   text: 'Male',
-                  selected: true,
+                  selected: male,
+                  onTap: () {
+                    setState(() {
+                      male = !male;
+                      female = false;
+                    });
+                  },
                 ),
                 GenderButton(
                   text: 'Female',
-                  selected: false,
+                  selected: female,
+                  onTap: () {
+                    setState(() {
+                      female = !female;
+                      male = false;
+                    });
+                  },
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
