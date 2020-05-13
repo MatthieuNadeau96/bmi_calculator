@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: Color(0xff5E3FB7),
-        accentColor: Color(0xffDED1FF),
+        accentColor: Color(0xff5E3FB7),
+        buttonColor: Color(0xffDED1FF),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
@@ -179,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Slider.adaptive(
                     value: weight,
                     activeColor: themeData.primaryColor,
-                    inactiveColor: themeData.accentColor,
+                    inactiveColor: themeData.buttonColor,
                     onChanged: (newRating) {
                       setState(() {
                         weight = newRating;
