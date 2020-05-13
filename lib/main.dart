@@ -1,6 +1,8 @@
 import 'package:bmi_calculator/gender_button.dart';
 import 'package:flutter/material.dart';
 
+import 'package:numberpicker/numberpicker.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -42,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Biological Gender: '),
+            Text('What is your biological gender?'),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,6 +70,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text('How old are you?'),
+            NumberPicker.horizontal(
+              initialValue: 20,
+              minValue: 5,
+              maxValue: 79,
+              onChanged: null,
             ),
           ],
         ),
