@@ -2,6 +2,7 @@ import 'package:bmi_calculator/gender_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:numberpicker/numberpicker.dart';
+import './custom_switch.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: Color(0xff5E3FB7),
+        accentColor: Color(0xffDED1FF),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
@@ -34,6 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int inches = 70;
   int feet = 5;
   int remainderInches = 10;
+  double weight = 140;
+  bool pounds = true;
 
   void inchesToFeet() {
     setState(() {
@@ -146,6 +150,50 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                   },
                 ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Weight'),
+                CustomSwitch(
+                  activeColor: themeData.primaryColor,
+                  value: pounds,
+                  onChanged: (val) {
+                    setState(() {
+                      pounds = val;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Slider.adaptive(
+                    value: weight,
+                    activeColor: themeData.primaryColor,
+                    inactiveColor: themeData.accentColor,
+                    onChanged: (newRating) {
+                      setState(() {
+                        weight = newRating;
+                      });
+                    },
+                    divisions: 200,
+                    min: 0,
+                    max: 400,
+                  ),
+                ),
+                Text(
+                  '${weight.round()}',
+                  style: TextStyle(fontSize: 20),
+                )
               ],
             ),
           ],
