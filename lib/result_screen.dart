@@ -65,7 +65,12 @@ class ResultScreen extends StatelessWidget {
             ),
             Spacer(flex: 1),
             // SizedBox(height: 30),
-            CustomBigButton(text: 'Reset')
+            CustomBigButton(
+              text: 'Reset',
+              onTap: () {
+                Navigator.pop(context);
+              },
+            )
           ],
         ),
       ),

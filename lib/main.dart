@@ -22,10 +22,14 @@ class MyApp extends StatelessWidget {
         buttonColor: Color(0xffDED1FF),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ResultScreen(
-        resultText: '21',
-        resultType: 'Normal',
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/results': (context) => ResultScreen(
+              resultText: '21',
+              resultType: 'Normal',
+            ),
+      },
     );
   }
 }
@@ -210,7 +214,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             CustomBigButton(
               text: 'Calculate',
-              onTap: null,
+              onTap: () {
+                Navigator.pushNamed(context, '/results');
+              },
             ),
           ],
         ),
