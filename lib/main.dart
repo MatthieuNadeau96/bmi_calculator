@@ -21,6 +21,12 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xff5E3FB7),
         buttonColor: Color(0xffDED1FF),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: TextTheme(
+          bodyText1: TextStyle(
+            fontSize: 18,
+            color: Color(0xff666666),
+          ),
+        ),
       ),
       home: MyHomePage(),
       routes: {
@@ -100,7 +106,6 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.only(
           left: 15,
           right: 15,
-          bottom: 30,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 30,
             ),
-            Text('What is your biological gender?'),
+            Text(
+              'What is your biological gender?',
+              style: themeData.textTheme.bodyText1,
+            ),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -150,7 +158,10 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 30,
             ),
-            Text('How old are you?'),
+            Text(
+              'How old are you?',
+              style: themeData.textTheme.bodyText1,
+            ),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -169,11 +180,19 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 30,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Height: '),
+                Text(
+                  'Height: ',
+                  style: themeData.textTheme.bodyText1,
+                ),
                 Text(
                   '$feet\'$remainderInches\"',
-                  style: TextStyle(fontSize: 16, color: themeData.primaryColor),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: themeData.primaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -200,7 +219,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Weight'),
+                Text(
+                  'Weight',
+                  style: themeData.textTheme.bodyText1,
+                ),
                 CustomSwitch(
                   activeColor: themeData.primaryColor,
                   value: pounds,
