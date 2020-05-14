@@ -1,8 +1,10 @@
+import 'package:bmi_calculator/custom_big_button.dart';
 import 'package:bmi_calculator/gender_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:numberpicker/numberpicker.dart';
 import './custom_switch.dart';
+import './result_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +22,10 @@ class MyApp extends StatelessWidget {
         buttonColor: Color(0xffDED1FF),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: ResultScreen(
+        resultText: '21',
+        resultType: 'Normal',
+      ),
     );
   }
 }
@@ -35,9 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
   bool female = false;
   int age = 25;
   int inches = 70;
+  double weight = 140;
+
   int feet = 5;
   int remainderInches = 10;
-  double weight = 140;
   bool pounds = true;
 
   void inchesToFeet() {
@@ -189,8 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         weight = newRating;
                       });
                     },
-                    divisions: 200,
-                    min: 0,
+                    min: 75,
                     max: 400,
                   ),
                 ),
@@ -203,25 +208,9 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 30,
             ),
-            GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              child: Container(
-                height: 60,
-                width: deviceSize.width,
-                decoration: BoxDecoration(
-                  color: Colors.green[300],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    'Calculate',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
+            CustomBigButton(
+              text: 'Calculate',
+              onTap: null,
             ),
           ],
         ),
