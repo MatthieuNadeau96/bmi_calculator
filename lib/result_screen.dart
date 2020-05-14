@@ -2,10 +2,19 @@ import 'package:bmi_calculator/custom_big_button.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreen extends StatelessWidget {
+  static const routeName = '/results';
+
   final String resultText;
   final String resultType;
+  final String actualBmi;
+  final bool healthy;
 
-  ResultScreen({this.resultText, this.resultType});
+  ResultScreen({
+    this.resultText,
+    this.resultType,
+    this.actualBmi,
+    this.healthy,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +61,12 @@ class ResultScreen extends StatelessWidget {
                     Text(
                       resultType,
                       style: TextStyle(
-                        color: Colors.green,
+                        color: healthy ? Colors.green : Colors.orange,
                         fontSize: 30,
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text('BMI = 21.97'),
+                    Text('BMI = $actualBmi'),
                     SizedBox(height: 30),
                   ],
                 ),

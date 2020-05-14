@@ -22,13 +22,9 @@ class MyApp extends StatelessWidget {
         buttonColor: Color(0xffDED1FF),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      home: MyHomePage(),
       routes: {
-        '/': (context) => MyHomePage(),
-        '/results': (context) => ResultScreen(
-              resultText: '21',
-              resultType: 'Normal',
-            ),
+        ResultScreen.routeName: (context) => ResultScreen(),
       },
     );
   }
@@ -45,6 +41,38 @@ class _MyHomePageState extends State<MyHomePage> {
   int age = 25;
   int inches = 70;
   double weight = 140;
+  double bmi = 21;
+  double kg = 63.5029;
+  double meters = 1.778;
+  int bmiRounded = 21;
+  String bmiType = 'Normal';
+  bool healthy = true;
+
+  void calculateBMI() {
+    setState(
+      () {
+        kg = double.parse((weight / 2.205).toStringAsFixed(2)).toDouble();
+        meters = double.parse((inches / 39.37).toStringAsFixed(3)).toDouble();
+        bmi = double.parse((kg / (meters * meters)).toStringAsFixed(2))
+            .toDouble();
+        bmiRounded =
+            double.parse((kg / (meters * meters)).toStringAsFixed(2)).toInt();
+        if (bmi < 18.5) {
+          bmiType = 'Underweight';
+          healthy = false;
+        } else if (bmi > 18.5 && bmi < 24.9) {
+          bmiType = 'Normal';
+          healthy = true;
+        } else if (bmi > 25 && bmi < 29.9) {
+          bmiType = 'Overweight';
+          healthy = false;
+        } else if (bmi > 30) {
+          bmiType = 'Obese';
+          healthy = false;
+        }
+      },
+    );
+  }
 
   int feet = 5;
   int remainderInches = 10;
@@ -215,7 +243,19 @@ class _MyHomePageState extends State<MyHomePage> {
             CustomBigButton(
               text: 'Calculate',
               onTap: () {
-                Navigator.pushNamed(context, '/results');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ResultScreen(
+                              resultText: bmiRounded.toString(),
+                              resultType: bmiType,
+                              actualBmi: bmi.toString(),
+                              healthy: healthy,
+                            )));
+                calculateBMI();
+                print(kg);
+                print(meters);
+                print('BMI: $bmi');
               },
             ),
           ],
